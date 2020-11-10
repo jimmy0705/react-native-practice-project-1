@@ -9,8 +9,9 @@ const Btn = (props) => {
       }
 
     return (
-      <View>
+      <View >
             <Button
+            style={{marginTop:30}}
             onPress={onPressButton}
             title="Press Me"
           />

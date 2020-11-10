@@ -15,24 +15,41 @@ import Btn from './src/Btn'
 export default function App() {
  
   const [name , setName] = useState("jimmy")
+  const [show , setShow] = useState(false)
+  const [age, setAge] = useState('30');
 
   function clickHandler(){
     setName("Juned")
   }
 
+  function showHandler(){
+    setShow(!show)
+  }
+
+
   return (
     <View style={styles.container}>
-      <Text style={styles.bigBlue}>Hello World!</Text>
-      <FixedDimensionsBasics/>
-  <Text style={{color:"yellow",fontSize:30,marginTop:20}}>my name is {name}</Text>
+       {/* <Button title="show/hide fixed height" onPress={showHandler}/>
+     {show ?  <FixedDimensionsBasics/> : <Text></Text>}
+  <Text style={{color:"black",fontSize:30,marginTop:20}}>my name is {name}</Text>
       <Btn setName={setName}/>
-      <Button title="update state" onPress={clickHandler}/>
+      <Button title="update state" onPress={clickHandler}/> */}
 
-      <View>
-        <TextInput>
+      <Text>Enter name:</Text>
+      <TextInput 
+        placeholder='enter Name...' 
+        style={styles.input}
+        onChangeText={(value) => setName(value)} />
 
-        </TextInput>
-      </View>
+      <Text>Enter age:</Text>
+      <TextInput 
+        placeholder='enter Age...' 
+        style={styles.input}
+        onChangeText={(value) => setAge(value)} />
+
+      <Text style={styles.result}>name: {name}, age: {age}</Text>
+
+   
 
     </View>
   );
@@ -40,7 +57,10 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-   
+    flex:1,
+    justifyContent:"center",
+    alignItems:"center",
+    
     backgroundColor: '#fff',
     margin: 30
  
@@ -51,5 +71,12 @@ const styles = StyleSheet.create({
     color: 'blue',
     fontWeight: 'bold',
     fontSize: 30,
+  },
+   input: {
+    borderWidth: 1,
+    borderColor: '#777',
+    padding: 8,
+    margin: 10,
+    width: 200,
   }
 });
