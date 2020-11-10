@@ -7,11 +7,13 @@
  */
 
 import React,{useState} from 'react';
-import { Button, StyleSheet, Text, View ,TextInput} from 'react-native';
+import { Button, StyleSheet, Text, View ,TextInput,FlatList} from 'react-native';
 
 import FixedDimensionsBasics from './src/StylePrctc'
 import Btn from './src/Btn'
 import Scroll from './src/ScrlView'
+import Header from './src/Header'
+import TodoItem from './src/TodoItem'
 
 export default function App() {
  
@@ -19,16 +21,29 @@ export default function App() {
   const [show , setShow] = useState(false)
   const [age, setAge] = useState('30');
 
-  const people=[
-    { name: 'shaun', id: '1' },
-    { name: 'yoshi', id: '2' },
-    { name: 'mario', id: '3' },
-    { name: 'luigi', id: '4' },
-    { name: 'peach', id: '5' },
-    { name: 'toad', id: '6' },
-    { name: 'bowser', id: '7' },
-    { name: 'bowser', id: '8' },
-  ]
+  // const people=[
+  //   { name: 'shaun', id: '1' },
+  //   { name: 'yoshi', id: '2' },
+  //   { name: 'mario', id: '3' },
+  //   { name: 'luigi', id: '4' },
+  //   { name: 'peach', id: '5' },
+  //   { name: 'toad', id: '6' },
+  //   { name: 'bowser', id: '7' },
+  //   { name: 'bowser', id: '8' },
+  // ]
+
+  const [todos, setTodos] = useState([
+    { text: 'buy coffee', key: '1' },
+    { text: 'create an app', key: '2' },
+    { text: 'play on the switch', key: '3' }
+  ]);
+
+
+  const pressHandler = (key) => {
+    setTodos(prevTodos => {
+      return prevTodos.filter(todo => todo.key != key);
+    });
+  };
 
   function clickHandler(){
     setName("Juned")
@@ -68,7 +83,24 @@ export default function App() {
     {/* scroll view practice */}
     {/* <Scroll people={people}/> */}
 
-    </View>
+    
+
+{/* todo list fgoesfrom here */}
+
+<Header />
+      <View style={styles.content}>
+        {/* add todo form */}
+        <View style={styles.list}>
+          <FlatList
+            data={todos}
+            renderItem={({ item }) => (
+              <TodoItem item={item} pressHandler={pressHandler} />
+            )}
+          />
+        </View>
+      </View>
+
+</View>
   );
 }
 
@@ -88,6 +120,12 @@ const styles = StyleSheet.create({
     
   
   },
+  content: {
+    padding: 40,
+  },
+  list: {
+    marginTop: 20,
+  },
   bigBlue: {
     color: 'blue',
     fontWeight: 'bold',
@@ -99,5 +137,12 @@ const styles = StyleSheet.create({
     padding: 8,
     margin: 10,
     width: 200,
-  }
+  },
+  item: {
+    flex: 1,
+    marginTop: 24,
+    padding: 30,
+    backgroundColor: 'pink',
+    fontSize: 24,
+  },
 });
