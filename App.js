@@ -11,12 +11,24 @@ import { Button, StyleSheet, Text, View ,TextInput} from 'react-native';
 
 import FixedDimensionsBasics from './src/StylePrctc'
 import Btn from './src/Btn'
+import Scroll from './src/ScrlView'
 
 export default function App() {
  
   const [name , setName] = useState("jimmy")
   const [show , setShow] = useState(false)
   const [age, setAge] = useState('30');
+
+  const people=[
+    { name: 'shaun', id: '1' },
+    { name: 'yoshi', id: '2' },
+    { name: 'mario', id: '3' },
+    { name: 'luigi', id: '4' },
+    { name: 'peach', id: '5' },
+    { name: 'toad', id: '6' },
+    { name: 'bowser', id: '7' },
+    { name: 'bowser', id: '8' },
+  ]
 
   function clickHandler(){
     setName("Juned")
@@ -28,6 +40,7 @@ export default function App() {
 
 
   return (
+    <View style={styles.mainContainer}>
     <View style={styles.container}>
        {/* <Button title="show/hide fixed height" onPress={showHandler}/>
      {show ?  <FixedDimensionsBasics/> : <Text></Text>}
@@ -50,14 +63,22 @@ export default function App() {
       <Text style={styles.result}>name: {name}, age: {age}</Text>
 
    
+  
+    </View>
+    {/* scroll view practice */}
+    {/* <Scroll people={people}/> */}
 
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  mainContainer:{
     flex:1,
+    backgroundColor:"green"
+  },
+  container: {
+    display:"flex",
     justifyContent:"center",
     alignItems:"center",
     
