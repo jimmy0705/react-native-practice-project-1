@@ -1,12 +1,12 @@
 import React from 'react'
-import {StyleSheet, TouchableOpacity, Text,View} from 'react-native';
+import {StyleSheet, TouchableOpacity, Text,View,Button} from 'react-native';
 
 import CreateTodo from './CreateTodo'
 import Todo from './Todo'
 import { connect } from 'react-redux'
 
  function TodoItem(props) {
-//console.log(props)
+  const {navigation} = props
   
   return (
     // <TouchableOpacity onPress={() => pressHandler(item.key)}>
@@ -14,6 +14,12 @@ import { connect } from 'react-redux'
     // </TouchableOpacity>
     <View>
         <Text style={styles.heading}>Todo List</Text>
+
+        <Button
+        style={styles.btn} 
+        title="go to Navigation"
+        onPress={() => navigation.navigate('Navigation')}
+      />
 
         <CreateTodo/>
       <View style={{marginTop:30}}></View>
@@ -53,5 +59,8 @@ const styles = StyleSheet.create({
     textAlign:"center",
     fontWeight:"bold"
     
+  },
+  btn:{
+    width:30,
   }
 });

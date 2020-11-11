@@ -1,16 +1,19 @@
 import React from 'react';
-import { View, Text, StyleSheet,TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet,TouchableOpacity ,Button} from 'react-native';
 
-export default function Header() {
+export default function Header({ navigation }) {
+  
   return (
     <View style={styles.header}>
-      <TouchableOpacity>
-      <Text style={styles.title}>Todo</Text>
-      </TouchableOpacity>
+     <Button
+        title="Todo"
+        onPress={() => navigation.navigate('Todo')}
+      />
 
-      <TouchableOpacity>
-      <Text style={styles.title}>navigation</Text>
-      </TouchableOpacity>
+<Button
+        title="Navigation"
+        onPress={() => navigation.navigate('Navigation')}
+      />
       
      
     </View>
