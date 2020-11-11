@@ -1,21 +1,22 @@
 
 import React,{useState} from 'react';
 import { Button, StyleSheet, Text, View} from 'react-native';
+import {connect} from "react-redux"
 
 
 
-export default function Todo() {
+  function Todo(props) {
 
    
  
     function  onPressDelete() {
-        alert('You tapped the  delete button!')
+      props.deleteTodo(props.id)
       }
 
 
   return (
     <View style={styles.todoContainer}>
-        <Text style={styles.todo} >hjgijrgijirgj jfjhgjijgi</Text>
+        <Text style={styles.todo} >{props.todo}</Text>
         <Button
             style={styles.del}
             onPress={onPressDelete}
@@ -25,6 +26,19 @@ export default function Todo() {
 </View>
   );
 }
+
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteTodo:id => dispatch({type: 'DELETE_TODO', id: id})
+  }
+}
+
+
+export default connect(null,mapDispatchToProps)(Todo)
+
+
 
 const styles = StyleSheet.create({
   todoContainer:{

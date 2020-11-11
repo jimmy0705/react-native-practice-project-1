@@ -9,9 +9,14 @@
 import React,{useState} from 'react';
 import { Button, StyleSheet, Text, View ,TextInput} from 'react-native';
 
-// import FixedDimensionsBasics from './src/StylePrctc'
-// // import Btn from './src/Btn'
-// // import Scroll from './src/ScrlView'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import todoReducer from './reducers/todoReducer'
+
+//console.log(todoReducer)
+const store = createStore(todoReducer);
+
+//console.log(store)
   import Header from './src/Header'
   import TodoItem from './src/TodoItem'
 
@@ -21,7 +26,8 @@ export default function App() {
 
 
   return (
-    <View style={styles.mainContainer}>
+    <Provider store={store}>
+        <View style={styles.mainContainer}>
       <Header/>
     <View style={styles.container}>
      <TodoItem/>
@@ -29,6 +35,8 @@ export default function App() {
   </View>
 
 </View>
+    </Provider>
+ 
   );
 }
 

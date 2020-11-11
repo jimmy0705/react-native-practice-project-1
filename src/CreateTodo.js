@@ -1,21 +1,34 @@
 
-import React,{useState} from 'react';
-import { Button, StyleSheet, Text, View ,TextInput} from 'react-native';
+import React,{useState} from 'react'
+import { connect } from 'react-redux'
+import { Button, StyleSheet, Text, View ,TextInput} from 'react-native'
 
 
 
-export default function CreatTodo() {
+function CreatTodo(props) {
 
-    const [text, setText] = useState('');
+  const [task, setTask] = useState('');
  
     function  onPressButton() {
-        alert('You tapped the  Add button!')
+        console.log(task)
+        console.log(props)
+        props.addTodo(task)
+        setTask("")
+        
       }
+
+     
+
 
 
   return (
     <View style={styles.inputContainer}>
-        <TextInput style={styles.input} ></TextInput>
+        <TextInput 
+
+    placeholder='add task...' 
+    style={styles.input}
+    onChangeText={(value) => setTask(value)} 
+     />
         <Button
             onPress={onPressButton}
             title="Add"
@@ -24,6 +37,17 @@ export default function CreatTodo() {
 </View>
   );
 }
+
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTodo:task => dispatch({type: 'ADD_TODO', task: task})
+  }
+}
+
+
+export default connect(null,mapDispatchToProps)(CreatTodo)
 
 const styles = StyleSheet.create({
   inputContainer:{

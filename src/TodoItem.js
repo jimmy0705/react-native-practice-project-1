@@ -3,9 +3,10 @@ import {StyleSheet, TouchableOpacity, Text,View} from 'react-native';
 
 import CreateTodo from './CreateTodo'
 import Todo from './Todo'
+import { connect } from 'react-redux'
 
-export default function TodoItem() {
-
+ function TodoItem(props) {
+//console.log(props)
   
   return (
     // <TouchableOpacity onPress={() => pressHandler(item.key)}>
@@ -16,12 +17,25 @@ export default function TodoItem() {
 
         <CreateTodo/>
       <View style={{marginTop:30}}></View>
-        <Todo/>
+      {props.todos.length<1 ? <Text>please add your todos </Text> :  <View>
+                   {props.todos.map((todo,index)=><Todo todo={todo.task} key={index} id={index}/>)}
+                </View>}
+        {/* <Todo/> */}
 
     </View>
 
   )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    todos: state.todos
+  }
+}
+
+
+
+export default connect(mapStateToProps)(TodoItem)
 
 const styles = StyleSheet.create({
   item: {
