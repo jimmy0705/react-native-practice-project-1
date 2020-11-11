@@ -1,24 +1,40 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet,TouchableOpacity } from 'react-native';
 
 export default function Header() {
   return (
     <View style={styles.header}>
-      <Text style={styles.title}>My Todos</Text>
+      <TouchableOpacity>
+      <Text style={styles.title}>Todo</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity>
+      <Text style={styles.title}>navigation</Text>
+      </TouchableOpacity>
+      
+     
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   header: {
-    height: 80,
-    paddingTop: 38,
+    display:"flex",
+    height: 50,
     backgroundColor: 'coral',
+    flexDirection:"row",
+    justifyContent:"space-evenly"
   },
   title: {
-    textAlign: 'center',
+  
     color: '#fff',
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: 'bold',
+    padding:9,
+    backgroundColor:"green",
+
   }
 });
+
+
+

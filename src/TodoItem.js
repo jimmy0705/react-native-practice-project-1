@@ -1,13 +1,25 @@
 import React from 'react'
-import {StyleSheet, TouchableOpacity, Text} from 'react-native';
+import {StyleSheet, TouchableOpacity, Text,View} from 'react-native';
 
-export default function TodoItem({ pressHandler, item }) {
+import CreateTodo from './CreateTodo'
+import Todo from './Todo'
 
-    console.log(item.key)
+export default function TodoItem() {
+
+  
   return (
-    <TouchableOpacity onPress={() => pressHandler(item.key)}>
-      <Text style={styles.item}>{item.text}</Text>
-    </TouchableOpacity>
+    // <TouchableOpacity onPress={() => pressHandler(item.key)}>
+    //   <Text style={styles.item}>{item.text}</Text>
+    // </TouchableOpacity>
+    <View>
+        <Text style={styles.heading}>Todo List</Text>
+
+        <CreateTodo/>
+      <View style={{marginTop:30}}></View>
+        <Todo/>
+
+    </View>
+
   )
 }
 
@@ -20,5 +32,12 @@ const styles = StyleSheet.create({
     
     borderRadius: 1,
     borderRadius: 10,
+  },
+  heading:{
+    color:"black",
+    fontSize:30,
+    textAlign:"center",
+    fontWeight:"bold"
+    
   }
 });
